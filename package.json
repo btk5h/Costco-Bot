@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "bufferutil": "^4.0.0",
+    "eris": "^0.9.0",
+    "erlpack": "^0.1.2",
+    "eventemitter3": "^3.1.0",
+    "node-persist": "^3.0.1",
+    "require-dir": "^1.1.0",
+    "uws": "^99.0.0",
+    "winston": "^3.1.0",
+    "zlib-sync": "^0.1.4"
+  },
+  "devDependencies": {
+    "prettier": "^1.14.2"
+  }
+}
