@@ -22,13 +22,15 @@ function startBot() {
     }
   );
 
-  serverLogger.info("Loading modules...");
+  bot.on("ready", () => {
+    serverLogger.info("Loading modules...");
 
-  Object.entries(requireDir("./lib/modules"))
-    .forEach(([file, module]) => {
-      serverLogger.info(`Loading module ${file}`);
-      module({ bot, log: createLogger(file) });
-    });
+    Object.entries(requireDir("./lib/modules"))
+      .forEach(([file, module]) => {
+        serverLogger.info(`Loading module ${file}`);
+        module({ bot, log: createLogger(file) });
+      });
+  });
 
   bot.connect();
 }
