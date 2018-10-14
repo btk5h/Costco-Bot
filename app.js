@@ -20,6 +20,8 @@ function startBot() {
     BOT_TOKEN,
     {},
     {
+      description: "The guardian of Costco",
+      owner: "btk5h#9251",
       prefix: "!"
     }
   );
