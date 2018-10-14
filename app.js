@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const { CommandClient } = require("eris");
 const requireDir = require("require-dir");
 
