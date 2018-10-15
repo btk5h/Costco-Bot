@@ -1,2 +1,2 @@
 #!/bin/sh
-killall node || true
+killall -q node || true
