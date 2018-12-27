@@ -11,11 +11,12 @@ resource "aws_key_pair" "deployer" {
 }
 
 resource "aws_instance" "bot" {
-  ami             = "ami-011b6930a81cd6aaf"
-  instance_type   = "t2.micro"
-  key_name        = "${aws_key_pair.deployer.key_name}"
+  ami                  = "ami-011b6930a81cd6aaf"
+  instance_type        = "t2.micro"
+  key_name             = "${aws_key_pair.deployer.key_name}"
+  iam_instance_profile = "${aws_iam_instance_profile.ec2.name}"
 
-  security_groups = [
+  security_groups      = [
     "${aws_security_group.bot_group.name}",
   ]
 

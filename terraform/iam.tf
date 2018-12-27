@@ -103,3 +103,43 @@ resource "aws_iam_role_policy_attachment" "codedeploy" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSCodeDeployRole"
   role       = "${aws_iam_role.codedeploy.name}"
 }
+
+data "aws_iam_policy_document" "assume_ec2" {
+  statement {
+    actions = ["sts:AssumeRole"]
+    effect  = "Allow"
+
+    principals {
+      type        = "Service"
+      identifiers = ["ec2.amazonaws.com"]
+    }
+  }
+}
+
+resource "aws_iam_role" "ec2" {
+  assume_role_policy = "${data.aws_iam_policy_document.assume_ec2.json}"
+}
+
+data "aws_iam_policy_document" "ec2" {
+  statement {
+    actions   = [
+      "s3:Get*",
+      "s3:List*"
+    ]
+    resources = ["*"],
+    effect    = "Allow"
+  }
+}
+
+resource "aws_iam_policy" "ec2" {
+  policy = "${data.aws_iam_policy_document.ec2.json}"
+}
+
+resource "aws_iam_role_policy_attachment" "ec2" {
+  policy_arn = "${aws_iam_policy.ec2.arn}"
+  role       = "${aws_iam_role.ec2.name}"
+}
+
+resource "aws_iam_instance_profile" "ec2" {
+  role = "${aws_iam_role.ec2.name}"
+}
