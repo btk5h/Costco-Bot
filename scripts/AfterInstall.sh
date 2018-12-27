@@ -3,4 +3,4 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 cd /var/app
-yarn install
+sudo env "PATH=$PATH" yarn install
