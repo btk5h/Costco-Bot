@@ -4,13 +4,13 @@ files:
 - source: /
   destination: /var/app
 hooks:
+  ApplicationStop:
+    - location: scripts/ApplicationStop.sh
+      timeout: 300
+      runas: root
   AfterInstall:
-  - location: scripts/install_dependencies.sh
+    - location: scripts/AfterInstall.sh
     timeout: 300
   ApplicationStart:
-  - location: scripts/start_bot.sh
+    - location: scripts/ApplicationStart.sh
     timeout: 60
-  ApplicationStop:
-  - location: scripts/stop_bot.sh
-    timeout: 300
-    runas: root
