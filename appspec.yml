@@ -3,14 +3,20 @@ os: linux
 files:
   - source: /
     destination: /var/app
+permissions:
+  - object: /var/app
+    pattern: "**"
+    owner: ec2-user
 hooks:
   ApplicationStop:
     - location: scripts/ApplicationStop.sh
       timeout: 300
-      runas: root
+      runas: ec2-user
   AfterInstall:
     - location: scripts/AfterInstall.sh
       timeout: 300
+      runas: ec2-user
   ApplicationStart:
     - location: scripts/ApplicationStart.sh
       timeout: 60
+      runas: ec2-user
