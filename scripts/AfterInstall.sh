@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 cd /var/app
-yarn install
+sudo env "PATH=$PATH" yarn install
