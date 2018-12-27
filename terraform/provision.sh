@@ -2,7 +2,7 @@
 set -e
 
 sudo yum update -y
-sudo yum install -y ruby wget
+sudo yum install -y ruby wget make glibc-devel gcc patch
 cd /home/ec2-user
 wget https://aws-codedeploy-us-west-1.s3.amazonaws.com/latest/install
 chmod +x ./install
