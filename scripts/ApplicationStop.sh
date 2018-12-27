@@ -4,3 +4,5 @@ export NVM_DIR="$HOME/.nvm"
 
 pm2 stop all
 pm2 delete all
+
+exit 0
