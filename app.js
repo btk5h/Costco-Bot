@@ -5,7 +5,7 @@ const { CommandClient } = require("eris");
 const requireDir = require("require-dir");
 
 const { updateConfiguration } = require("./lib/config");
-const { serverLogger, createLogger } = require("./lib/logging");
+const { serverLogger, createLogger, createBotLogger } = require("./lib/logging");
 
 const BOT_TOKEN = process.env.BOT_TOKEN;
 
@@ -36,7 +36,7 @@ function startBot() {
     Object.entries(requireDir("./lib/modules"))
       .forEach(([file, module]) => {
         serverLogger.info(`Loading module ${file}`);
-        module({ bot, log: createLogger(file) });
+        module({ bot, log: createBotLogger(file, bot) });
       });
   });
 
