@@ -4,6 +4,7 @@ require("dotenv").config({ path: path.join(__dirname, ".env") });
 const { CommandClient } = require("eris");
 const requireDir = require("require-dir");
 
+const { updateConfiguration } = require("./lib/config");
 const { serverLogger, createLogger } = require("./lib/logging");
 
 const BOT_TOKEN = process.env.BOT_TOKEN;
@@ -27,7 +28,9 @@ function startBot() {
     }
   );
 
-  bot.on("ready", () => {
+  bot.on("ready", async () => {
+    await updateConfiguration({ bot, log: createLogger("config") });
+
     serverLogger.info("Loading modules...");
 
     Object.entries(requireDir("./lib/modules"))
