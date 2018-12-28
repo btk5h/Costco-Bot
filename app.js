@@ -28,6 +28,10 @@ function startBot() {
     }
   );
 
+  bot.on("error", err => {
+    serverLogger.error(err);
+  });
+
   bot.on("ready", async () => {
     await updateConfiguration({ bot, log: createLogger("config") });
 
